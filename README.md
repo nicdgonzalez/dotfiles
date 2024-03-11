@@ -11,6 +11,8 @@ point for your own configurations.
 
 ## Installation
 
+<!-- TODO: Create a script that does all of the installing automatically -->
+
 * Clone this repository
 
 ```bash
@@ -19,8 +21,7 @@ git clone https://github.com/nicdgonzalez/dotfiles && cd dotfiles
 
 ### Vim
 
-If this is not your first time running Vim, you likely have existing files that
-need to be moved:
+If you have existing configuration files for Vim, they need to be moved:
 
 ```bash
 mv ~/.vim ~/.vim.original-backup
@@ -30,25 +31,22 @@ mv ~/.vimrc ~/.vimrc.original-backup
 #### Testing
 
 ```bash
-# Symlink my `.vim` directory to the `$HOME` directory
 ln -s $PWD/.vim ~/
-
-# Install Vim plugins
 vim -u $PWD/.vimrc -c 'PlugInstall' -- .
 ```
 
 #### Install
 
 ```bash
-# Symlink my `.vimrc` file to the `$HOME` directory
 ln -s $PWD/.vimrc ~/
 ```
 
 ### tmux
 
-If you have an existing configuration file for tmux, they need to be moved:
+If you have existing configuration files for tmux, they need to be moved:
 
 ```bash
+mv ~/.tmux ~/.tmux.original-backup
 mv ~/.tmux.conf ~/.tmux.conf.original-backup
 ```
 
@@ -61,13 +59,12 @@ tmux -2 -L ndg -f ./.tmux.conf
 #### Install
 
 ```bash
-# Symlink my `.tmux.conf` file to the `$HOME` directory
 ln -s $PWD/.tmux.conf ~/
 ```
 
 ### Fonts
 
-Symlink the target font into `/usr/share/fonts`. For example,
+Create symbolic links from the target font into `/usr/share/fonts`. For example,
 
 ```bash
 sudo ln -s $PWD/fonts/Menlo-Regular.ttf /usr/share/fonts/
