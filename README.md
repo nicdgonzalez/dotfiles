@@ -6,7 +6,7 @@ This repository is a collection of my personalized dotfiles for Unix-like
 systems. Feel free to peek at them for ideas, or use them as a starting
 point for your own configurations.
 
-* Operating System: Fedora 39
+* OS: Fedora 39
 * Editor: Vim
 
 ## Installation
@@ -19,32 +19,38 @@ git clone https://github.com/nicdgonzalez/dotfiles && cd dotfiles
 
 ### Vim
 
+If this is not your first time running Vim, you likely have existing files that
+need to be moved:
+
+```bash
+mv ~/.vim ~/.vim.original-backup
+mv ~/.vimrc ~/.vimrc.original-backup
+```
+
 #### Testing
 
 ```bash
-# If this is not your first time running Vim,
-# you have to move the existing `.vim` directory
-mv ~/.vim ~/.vim.original-backup
-
 # Symlink my `.vim` directory to the `$HOME` directory
-ln -s ./.vim ~/
+ln -s $PWD/.vim ~/
 
 # Install Vim plugins
-vim -u ./.vimrc -c 'PlugInstall' -- .
+vim -u $PWD/.vimrc -c 'PlugInstall' -- .
 ```
 
 #### Install
 
 ```bash
-# If this is not your first time running Vim,
-# you have to move the existing `.vimrc` file
-mv ~/.vimrc ~/.vimrc.original-backup
-
 # Symlink my `.vimrc` file to the `$HOME` directory
-ln -s ./.vimrc ~/
+ln -s $PWD/.vimrc ~/
 ```
 
 ### tmux
+
+If you have an existing configuration file for tmux, they need to be moved:
+
+```bash
+mv ~/.tmux.conf ~/.tmux.conf.original-backup
+```
 
 #### Testing
 
@@ -55,19 +61,15 @@ tmux -2 -L ndg -f ./.tmux.conf
 #### Install
 
 ```bash
-# Move your existing configuration (if applicable)
-mv ~/.tmux.conf ~/.tmux.conf.original-backup
-
 # Symlink my `.tmux.conf` file to the `$HOME` directory
-ln -s ./.tmux.conf ~/
+ln -s $PWD/.tmux.conf ~/
 ```
 
 ### Fonts
 
-Copy the target font into `/usr/share/fonts`.
+Symlink the target font into `/usr/share/fonts`. For example,
 
 ```bash
-# Example:
 sudo ln -s $PWD/fonts/Menlo-Regular.ttf /usr/share/fonts/
 ```
 
