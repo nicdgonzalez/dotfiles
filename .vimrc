@@ -23,7 +23,7 @@ set nocompatible
 " Plugins {{{
 " Plugin Manager: https://github.com/junegunn/vim-plug
 
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
 " The package manager can manage itself
 Plug 'junegunn/vim-plug'
