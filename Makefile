@@ -11,7 +11,7 @@ NVIM_DST := $(XDG_CONFIG_HOME)/nvim
 TMUX_SRC := $(PWD)/tmux
 TMUX_DST := $(XDG_CONFIG_HOME)/tmux
 
-BASH_SRC := $(PWD)/.bashrc.d
+BASH_SRC := $(PWD)/bash
 BASH_DST := $(HOME)/.bashrc.d
 
 FONTS_SRC := $(PWD)/fonts
