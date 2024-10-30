@@ -1,9 +1,17 @@
 #!/usr/bin/bash
 
-alias p='cd "$HOME/projects/personal"'
-alias w='cd "$HOME/projects/work"'
-alias o='cd "$HOME/projects/.third-party"'
+alias p='ncd "$HOME/projects/personal"'
+alias w='ncd "$HOME/projects/work"'
+alias o='ncd "$HOME/projects/third-party"'
 
+
+# Change into a directory and immediately print its contents.
+#
+# Arguments:
+#   $1: An absolute or relative path to the target directory.
+ncd() {
+    cd "$@" && ls -l --almost-all
+}
 
 # Create a directory and immediately change into it.
 #
@@ -24,13 +32,5 @@ nmkdir() {
         return 1
     fi
 
-    mkdir --parents "$1" && cd "$1"
-}
-
-# Change into a directory and immediately print its contents.
-#
-# Arguments:
-#   $1: An absolute or relative path to the target directory.
-ncd() {
-    cd "$@" && ls -la
+    mkdir --parents "$1" && ncd "$1"
 }
