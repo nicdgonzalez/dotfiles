@@ -5,7 +5,7 @@
 " | | | | | | |_ \ V /| | | | | | |
 " |_|_| |_|_|\__(_)_/ |_|_| |_| |_|
 "
-" Author: Nicolas Gonzalez <nicolasdgonzalez@proton.me>
+" Author: Nicolas D. Gonzalez <nicolasdgonzalez@proton.me>
 "
 " Feel free to use this file as a starting point or peek at it for ideas.
 " Don't just copy-paste it! Neovim is all about making it *your* own editor.
