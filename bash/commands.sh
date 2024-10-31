@@ -4,6 +4,8 @@ alias p='ncd "$HOME/projects/personal"'
 alias w='ncd "$HOME/projects/work"'
 alias o='ncd "$HOME/projects/third-party"'
 
+alias rocket-league='legendary launch Sugar -- --language=jpn'
+
 
 # Change into a directory and immediately print its contents.
 #
@@ -33,4 +35,16 @@ nmkdir() {
     fi
 
     mkdir --parents "$1" && ncd "$1"
+}
+
+# Force close the Steam process because the X only minimizes it...
+#
+# This command does nothing if Steam is not running.
+steam-exit() {
+    ps -aux \
+        | grep -P "$XDG_DATA_HOME/Steam/ubuntu12_32/steam" \
+        | grep -v "grep" \
+        | head -n 1 \
+        | awk '{print $2}' \
+        | xargs --no-run-if-empty --replace={} -- kill {}
 }
