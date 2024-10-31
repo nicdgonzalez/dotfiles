@@ -31,7 +31,11 @@ install: nvim tmux bash fonts
 
 nvim: $(NVIM_SRC)
 	@echo "==> Installing Neovim configuration"
-	@ln --symbolic --force "$(NVIM_SRC)" "$(NVIM_DST)"
+	@if [ -L "$(NVIM_DST)" ]; then \
+		exit 0; \
+	else \
+		ln --symbolic --force "$(NVIM_SRC)" "$(NVIM_DST)"; \
+	fi
 	@echo "Neovim configuration installed ($(NVIM_DST))"
 
 nvim-uninstall:
@@ -44,7 +48,11 @@ nvim-uninstall:
 
 tmux: $(TMUX_SRC)
 	@echo "==> Installing tmux configuration"
-	@ln --symbolic --force "$(TMUX_SRC)" "$(TMUX_DST)"
+	@if [ -L "$(TMUX_DST)" ]; then \
+		exit 0; \
+	else \
+		ln --symbolic --force "$(TMUX_SRC)" "$(TMUX_DST)"; \
+	fi
 	@echo "tmux configuration installed ($(TMUX_DST))"
 
 tmux-uninstall:
@@ -57,7 +65,11 @@ tmux-uninstall:
 
 bash: $(BASH_SRC)
 	@echo "==> Installing bash configuration"
-	@ln --symbolic --force "$(BASH_SRC)" "$(BASH_DST)"
+	@if [ -L "$(BASH_DST)" ]; then \
+		exit 0; \
+	else \
+		ln --symbolic --force "$(BASH_SRC)" "$(BASH_DST)"; \
+	fi
 	@echo "bash configuration installed ($(BASH_DST))"
 
 bash-uninstall:
@@ -78,6 +90,7 @@ fonts: $(FONTS_SRC)
 fonts-uninstall:
 	@echo "==> Removing added fonts"
 	@for font in $(PWD)/fonts/*.ttf; do \
+		font="$$(basename $$font)"; \
 		unlink "$(FONTS_DST)/$$font" || rm "$(FONTS_DST)/$$font"; \
 	done
 	@fc-cache --force --verbose
