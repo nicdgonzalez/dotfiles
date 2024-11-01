@@ -2,11 +2,11 @@
 
 # https://specifications.freedesktop.org/basedir-spec/latest/#variables
 
-ifeq ((XDG_CONFIG_HOME), undefined)
+ifeq ($(XDG_CONFIG_HOME),)
 	XDG_CONFIG_HOME := $(HOME)/.config
 endif
 
-ifeq ((XDG_DATA_HOME), undefined)
+ifeq ($(XDG_DATA_HOME),)
 	XDG_DATA_HOME := $(HOME)/.local/share
 endif
 
@@ -34,9 +34,6 @@ help:
 	@awk -F: '/^[a-zA-Z0-9._-]+:/ && !/\.PHONY/ {printf "%s, ", $$1}' Makefile | sed 's/, $$/\n/'
 
 install: nvim tmux bash fonts
-
-test:
-	@echo "$(XDG_CONFIG_HOME)"
 
 nvim: $(NVIM_SRC)
 	@echo "==> Installing Neovim configuration"
