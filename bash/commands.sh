@@ -6,6 +6,8 @@ alias o='ncd "$HOME/projects/third-party"'
 
 alias rocket-league='legendary launch Sugar -- --language=jpn'
 
+alias venv='source .venv/bin/activate'
+
 
 # Change into a directory and immediately print its contents.
 #
@@ -34,7 +36,12 @@ nmkdir() {
         return 1
     fi
 
-    mkdir --parents "$1" && ncd "$1"
+    # For mkdir, it is possible to create multiple directories using the '{}'
+    # syntax. However, this is not allowed in the `cd` command. Remove anything
+    # following the first '{' and cd there instead.
+    local cd_target="$(cut -d '{' -f 1 <<< \"$target\")"
+
+    mkdir --parents "$1" && ncd "$cd_target"
 }
 
 # Force close the Steam process because the X only minimizes it...
