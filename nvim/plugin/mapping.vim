@@ -16,6 +16,10 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+" Copy/paste to the system clipboard.
+map <C-y> "*y
+map <C-p> "*p
+
 " Move the current line up or down.
 " (This also helps new Vim users break the habit of using the arrow keys :)
 map <down> :m .+1<cr>==
@@ -29,6 +33,8 @@ vmap <up> :m '<-2<cr>gv=gv
 
 " Switch the current working directory to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+nmap <C-f> :!if [ -z ${TMUX+x} ]; then echo >&2 "error: can't open tmux-sessionizer inside nvim without a tmux session"; else tmux new-window tmux-sessionizer; fi<CR>
 
 " Return to the last edited line when opening a file. (You want this!)
 autocmd BufReadPost *
@@ -77,6 +83,6 @@ function! FormatOnSave()
     edit!
 endfunction
 
-au BufWritePost * call FormatOnSave()
+" au BufWritePost * call FormatOnSave()
 
 " }}}

@@ -4,9 +4,11 @@ alias p='ncd "$HOME/projects/personal"'
 alias w='ncd "$HOME/projects/work"'
 alias o='ncd "$HOME/projects/third-party"'
 
-alias rocket-league='legendary launch Sugar -- --language=jpn'
+alias rocket-league='legendary launch Sugar -- -language=jpn -nomovie -AllowBackgroundAudio -high'
 
 alias venv='source .venv/bin/activate'
+
+alias tree='tree --dirsfirst --noreport -nc --gitignore'
 
 
 # Change into a directory and immediately print its contents.
@@ -39,7 +41,9 @@ nmkdir() {
     # For mkdir, it is possible to create multiple directories using the '{}'
     # syntax. However, this is not allowed in the `cd` command. Remove anything
     # following the first '{' and cd there instead.
-    local cd_target="$(cut -d '{' -f 1 <<< \"$target\")"
+    local cd_target="$(cut -d '{' -f 1 <<< "$target")"
+    echo "target $target"
+    echo "cd target: $target"
 
     mkdir --parents "$1" && ncd "$cd_target"
 }
