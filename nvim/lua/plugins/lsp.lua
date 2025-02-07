@@ -18,6 +18,16 @@ return {
         --#endregion
     },
 
+    ops = {
+        servers = {
+            rust_analyzer = {
+                cargo = {
+                    allFeatures = true,
+                }
+            }
+        }
+    },
+
     config = function()
         -- Cmp
         local cmp = require("cmp")
@@ -56,6 +66,19 @@ return {
         })
 
         local lspconfig = require("lspconfig")
+
+        lspconfig.arduino_language_server.setup({
+            cmd = {
+                "/home/ngonzalez/go/bin/arduino-language-server",
+                "-clangd", "/usr/bin/clangd",
+                "-cli", "/home/ngonzalez/.local/bin/arduino-cli",
+                "-cli-config", "/home/ngonzalez/.arduino15/arduino-cli.yaml",
+                "-fqbn", "arduino:avr:uno",
+            },
+            root_dir = lspconfig.util.root_pattern("*.ino"),
+            filetypes = { "arduino" },
+            autostart = true,
+        })
 
         -- Cloning of the Deno project always seems to fail when it is in its
         -- own spec file... I can't figure out how to disable the git clone

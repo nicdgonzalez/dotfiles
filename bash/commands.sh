@@ -59,3 +59,17 @@ steam-exit() {
         | awk '{print $2}' \
         | xargs --no-run-if-empty --replace={} -- kill {}
 }
+
+# Create a new GitHub repository, and set it as the remote `origin` in
+# the current project.
+#
+# Arguments:
+#   $1: A name for the new repository.
+create-repo() {
+    declare REPO_NAME="$1"
+
+    gh repo create --private $REPO_NAME \
+        | tail -n 1 \
+        | awk -F '/' '{printf "git@github.com:%s/%s.git", $4, $5}' \
+        | xargs -I {} git remote add origin {}
+}

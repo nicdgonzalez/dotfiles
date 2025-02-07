@@ -34,7 +34,7 @@ vmap <up> :m '<-2<cr>gv=gv
 " Switch the current working directory to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-nmap <C-f> :!if [ -z ${TMUX+x} ]; then echo >&2 "error: can't open tmux-sessionizer inside nvim without a tmux session"; else tmux new-window tmux-sessionizer; fi<CR>
+nmap <C-f> :!if [ -z ${TMUX+x} ]; then echo >&2 "error: can't open orbit inside nvim without a tmux session"; else tmux new-window orbit; fi<CR>
 
 " Return to the last edited line when opening a file. (You want this!)
 autocmd BufReadPost *

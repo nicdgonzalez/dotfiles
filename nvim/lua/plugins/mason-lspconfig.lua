@@ -21,6 +21,8 @@ return {
             ---@type string[]
             ensure_installed = {
                 "lua_ls",
+                "arduino_language_server",
+                "clangd",
             },
 
             -- Whether to automatically install servers set up via `lspconfig`.
