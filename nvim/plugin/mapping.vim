@@ -1,3 +1,10 @@
+" Key mappings
+" ============
+"
+" Custom key mappings designed to make it easier to navigate within Vim.
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " By default, mapleader is "\" (the most popular alternative is ",")
 let mapleader = ' '
 
@@ -34,7 +41,7 @@ vmap <up> :m '<-2<cr>gv=gv
 " Switch the current working directory to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-nmap <C-f> :!if [ -z ${TMUX+x} ]; then echo >&2 "error: can't open orbit inside nvim without a tmux session"; else tmux new-window orbit; fi<CR>
+nmap <C-f> :!orbit<cr>
 
 " Return to the last edited line when opening a file. (You want this!)
 autocmd BufReadPost *
@@ -64,25 +71,5 @@ vnoremap <leader>$>{ ><esc>`>o}<esc><<`<O{<esc>
 vnoremap <leader>$" <esc>`>a"<esc>`<i"<esc>
 vnoremap <leader>$' <esc>`>a'<esc>`<i'<esc>
 vnoremap <leader>$` <esc>`>a`<esc>`<i`<esc>
-
-function! FormatOnSave()
-    let extension = expand('%:e')
-
-    if extension == 'go'
-        execute "!gofmt -w '%'"
-    elseif extension == 'py'
-        execute "!isort '%' && black --line-length=79 -- '%'"
-    elseif extension == 'js' || extension == 'jsx' || extension == 'ts' || extension == 'tsx' || extension == 'mjs'
-        execute "!prettier --write '%'"
-    else
-        echo "No formatter configured for extension: " . extension
-        return
-    endif
-
-    " Reload changes after formatting
-    edit!
-endfunction
-
-" au BufWritePost * call FormatOnSave()
 
 " }}}

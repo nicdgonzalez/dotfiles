@@ -1,6 +1,31 @@
-" Configuring Vim
+" Options
+" =======
+"
+" Core editor configuration. From line numbers to indenting, to whether or not
+" the mouse and clipboard work properly. This file contains various settings to
+" customize the behavior and appearance of Vim.
+"
+" The configurations are organized into sections:
+"
+" - General Settings
+" - User Interface
+" - Backups and Swap files
+" - Text, Tabs, and Indentation
+"
+" For additional documentation about any of the following options, use:
+"
+"   :help '<option>'
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" User interface {{{
+" General Settings {{{
+
+" Ditch Vi defaults so Vim can behave like a more modern editor.
+set nocompatible
+
+" }}}
+
+" User Interface {{{
 
 " Use 24-bit colors if the terminal supports it
 if &t_Co == 256
@@ -10,7 +35,7 @@ endif
 " Enable syntax highlighting
 syntax on
 
-" NOTE: Color scheme is installed via package manager later if using Neovim
+" The color scheme is installed via package manager if using Neovim
 if !has('nvim')
     colorscheme lunarperche
 endif
@@ -20,7 +45,7 @@ set colorcolumn=80
 
 " Set the height of the command line. Even for commands that write only one
 " line, they usually count as two due to the newline. Larger values are useful
-" for avoiding the 'Press <ENTER> to continue' message
+" for avoiding the 'Press <ENTER> to continue' message.
 set cmdheight=2
 
 " Display the cursor's position in the bottom right corner
@@ -70,26 +95,22 @@ set foldmethod=marker
 
 " }}}
 
-" Backups and swap files {{{
+" Backups and Swap files {{{
 
 " For me, this gets in the way more than it is helpful... besides, most things
-" are already in some form of version control, so this isn't all that useful
+" are already in some form of version control, so this isn't super necessary
 set nobackup
 set noswapfile
 
 " }}}
 
-" Text, tabs and indentation {{{
+" Text, Tabs, and Indentation {{{
 
 " Configure the backspace key to work as expected
 set backspace=indent,eol,start
 
 " Enable the system clipboard
-if system('uname -s') == 'Linux\n'
-    set clipboard=unnamedplus  " Linux
-else
-    set clipboard=unnamed  " OSX, Windows(?)
-endif
+set clipboard+=unnamedplus  " Linux
 
 " Use spaces instead of tabs
 set expandtab
@@ -116,4 +137,3 @@ set nowrap
 set showmatch
 
 " }}}
-
