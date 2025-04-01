@@ -1,13 +1,10 @@
 # Neovim Configuration
 
+My setup keeps things simple yet functional, with quality-of-life improvements
+that preserve the core Neovim feel. If you’re familiar with Vim or Neovim,
+you’ll find it easy to use.
+
 ![Screenshot of Neovim open to showcase this configuration's appearance](./assets/readme-screenshot.png)
-
-As my go-to programming editor, I've tailored my Neovim setup to strike a
-balance between simplicity and functionality. While it's not a barebones
-configuration, I gravitate towards quality-of-life plugins that enhance the
-overall experience without changing the core feel of Neovim.
-
-If you know your way around Neovim, this configuration should be easy to adopt.
 
 ## 📦 Installation
 
@@ -18,4 +15,10 @@ make install
 
 # or, to remove:
 make uninstall
+```
+
+Want to give it a try? Load this configuration temporarily with:
+
+```bash
+nvim -u "$PWD/init.lua" .
 ```
