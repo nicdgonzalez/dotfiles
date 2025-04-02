@@ -12,7 +12,6 @@ Installable using make:
 
 ```bash
 make install
-
 # or, to uninstall:
 make uninstall
 ```
