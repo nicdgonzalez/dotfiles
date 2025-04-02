@@ -12,11 +12,12 @@ Installable using make:
 
 ```bash
 make install
-# or, uninstall with:
+
+# or, to uninstall:
 make uninstall
 ```
 
-Want to give it a try? Start Neovim with this configuration temporarily with:
+Want to give it a try? Start Neovim using this configuration temporarily:
 
 ```bash
 nvim -u "$PWD/init.lua" .
