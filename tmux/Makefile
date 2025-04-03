@@ -10,8 +10,8 @@ endif
 install: $(XDG_CONFIG_HOME)/tmux
 	@echo >&2 "Successfully installed tmux configuration"
 
-uninstall: $(XDG_CONFIG_HOME)/tmux
-	rm $^
+uninstall:
+	rm $(XDG_CONFIG_HOME)/tmux
 	@echo >&2 "Successfully uninstalled tmux configuration"
 
 $(XDG_CONFIG_HOME)/tmux: $(this_dir)
