@@ -39,7 +39,7 @@ main() {
     echo "$DESKTOP_TEXT" > "$DESKTOP_PATH"
     echo >&2 "Done!"
 
-    echo -n >&2 "Updating desktop database..."
+    echo >&2 "Updating desktop database..."
     sudo update-desktop-database
     echo >&2 "Done!"
 }
