@@ -6,8 +6,8 @@ this_dir := $(patsubst %/,%,$(dir $(this_file)))
 install: $(HOME)/.bashrc $(HOME)/.bash_profile $(HOME)/.bashrc.d
 	@echo >&2 "Successfully installed bash configuration"
 
-uninstall: $(HOME)/.bashrc $(HOME)/.bash_profile $(HOME)/.bashrc.d
-	rm $^
+uninstall:
+	rm $(HOME)/.bashrc $(HOME)/.bash_profile $(HOME)/.bashrc.d
 	@echo >&2 "Successfully uninstalled bash configuration"
 
 $(HOME)/.bashrc: $(this_dir)/.bashrc

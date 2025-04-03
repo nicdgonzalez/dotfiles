@@ -10,8 +10,8 @@ endif
 install: $(XDG_CONFIG_HOME)/nvim
 	@echo >&2 "Successfully installed Neovim configuration"
 
-uninstall: $(XDG_CONFIG_HOME)/nvim
-	rm $^
+uninstall:
+	rm $(XDG_CONFIG_HOME)/nvim
 	@echo >&2 "Successfully uninstalled Neovim configuration"
 
 $(XDG_CONFIG_HOME)/nvim: $(this_dir)
