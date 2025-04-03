@@ -33,6 +33,7 @@ main() {
 
     mkdir --parents "$(dirname "$EXEC_PATH")" \
         && curl --silent --show-error --location --output "$EXEC_PATH" -- "$download_url"
+    chmod u+x "$EXEC_PATH"
     echo >&2 "Done!"
 
     echo -n >&2 "Creating desktop icon..."
