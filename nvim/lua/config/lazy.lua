@@ -1,9 +1,10 @@
---  _       _ _     _
--- (_)     (_) |   | |
---  _ _ __  _| |_  | |_   _  __ _
--- | | '_ \| | __| | | | | |/ _` |
--- | | | | | | |_ _| | |_| | (_| |
--- |_|_| |_|_|\__(_)_|\__,_|\__,_|
+--
+-- ██╗      █████╗ ███████╗██╗   ██╗██╗     ██╗   ██╗ █████╗
+-- ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║     ██║   ██║██╔══██╗
+-- ██║     ███████║  ███╔╝  ╚████╔╝ ██║     ██║   ██║███████║
+-- ██║     ██╔══██║ ███╔╝    ╚██╔╝  ██║     ██║   ██║██╔══██║
+-- ███████╗██║  ██║███████╗   ██║██╗███████╗╚██████╔╝██║  ██║
+-- ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝
 --
 -- This file is mainly used for managing Neovim plugins.
 
@@ -843,6 +844,43 @@ require("lazy").setup({
             },
         },
     },
+
+    {
+        "tailwindlabs/tailwindcss-intellisense",
+
+        config = function()
+            local lspconfig = require("lspconfig")
+
+            lspconfig.tailwindcss.setup({
+                filetypes = {
+                    "html",
+                    "css",
+                    "javascript",
+                    "javascriptreact",
+                    "typescript",
+                    "typescriptreact",
+                    "rust",
+                },
+                init_options = {
+                    userLanguages = {
+                        rust = "html",
+                    },
+                },
+                root_dir = lspconfig.util.root_pattern(
+                    "tailwind.config.js",
+                    "postcss.config.js",
+                    ".git"
+                ),
+                settings = {
+                    tailwindCSS = {
+                        experimental = {
+                            classRegex = "class\\s*=\\s*['\"]([^'\"]+)['\"]",
+                        },
+                    },
+                },
+            })
+        end,
+    },
 })
 
 --[[
@@ -852,8 +890,6 @@ require("lazy").setup({
 -- Clean (10)
 --   ○ cmp-buffer
 --   ○ cmp-cmdline
---   ○ tailwindcss-intellisense
---   ○ trouble.nvim
 --   ○ typescript-language-server
 --   ○ typescript.nvim
 --]]
