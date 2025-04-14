@@ -10,7 +10,8 @@ endif
 install: $(XDG_DATA_HOME)/fonts
 	@echo >&2 "Successfully installed fonts"
 
-uninstall: $(XDG_DATA_HOME)/fonts
+uninstall:
+	rm $(XDG_DATA_HOME)/fonts
 	@echo >&2 "Successfully uninstalled fonts"
 
 $(XDG_DATA_HOME)/fonts: $(this_dir)/assets
