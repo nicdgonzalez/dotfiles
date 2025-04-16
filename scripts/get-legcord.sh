@@ -3,10 +3,10 @@
 set -eo pipefail
 [ ! -z "${TRACE+x}" ] && set -x
 
-THIS_DIR="$(dirname "${BASH_SOURCE[0]}")"
+THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 
 EXEC_PATH="$HOME/.local/bin/legcord"
-ICON_PATH="$THIS_DIR/assets/legcord-desktop.png"
+ICON_PATH="$THIS_DIR/assets/legcord.png"
 
 DESKTOP_TEXT="\
 [Desktop Entry]
