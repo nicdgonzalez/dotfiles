@@ -36,3 +36,16 @@ main() {
 
 main "$@"
 unset -f main
+
+update_prompt() {
+    local previous_exit_status="$?"
+    local now="$(date +%R)"
+    local user_segment="\[\e[48;2;243;139;168;38;2;17;17;27m\]  \u"
+    local directory_segment="\[\e[48;2;250;179;135m\]  \w"
+    local git_branch_segment="\[\e[48;2;249;226;175m\]  $(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '-')"
+    local time_segment="\e[48;2;166;227;161m\]  $now"
+    local exit_status_segment="\[\e[48;2;116;199;236m\] $previous_exit_status"
+
+    export PS1="$user_segment $directory_segment $git_branch_segment $time_segment $exit_status_segment \[\e[0m\]\n\\$ "
+}
+export PROMPT_COMMAND='update_prompt'

@@ -1,11 +1,13 @@
 #!/usr/bin/bash
 
+alias reload='source "$HOME/.bashrc"'
+
 ncd() {
     declare -r desc='Change into a directory and print its contents.
 
     Arguments:
         $1: An absolute or relative path to the target directory.
-    ';
+    '
 
     cd "$@" && ls -l --almost-all
 }
@@ -31,7 +33,7 @@ nmkdir() {
 
     Errors:
       1: A file or directory already exists at the target path.
-    ';
+    '
 
     declare target="$1"
 
@@ -43,7 +45,7 @@ nmkdir() {
     # For mkdir, it is possible to create multiple directories using the '{}'
     # syntax. However, this is not allowed in the `cd` command. Remove anything
     # following the first '{' and cd there instead.
-    local cd_target="$(cut -d '{' -f 1 <<< "$target")"
+    local cd_target="$(cut -d '{' -f 1 <<<"$target")"
 
     mkdir --parents "$1" && ncd "$cd_target"
 }
@@ -56,14 +58,14 @@ create-repo() {
 
     Arguments:
       $1: A name for the new repository.
-    ';
+    '
 
     declare repo_name="$1"
 
     git init --initial-branch="main"
 
-    gh repo create --private $repo_name \
-        | tail -n 1 \
-        | awk -F '/' '{printf "git@github.com:%s/%s.git", $4, $5}' \
-        | xargs -I {} git remote add origin {}
+    gh repo create --private $repo_name |
+        tail -n 1 |
+        awk -F '/' '{printf "git@github.com:%s/%s.git", $4, $5}' |
+        xargs -I {} git remote add origin {}
 }
