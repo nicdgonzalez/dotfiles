@@ -646,13 +646,24 @@ require("lazy").setup({
                 python = { "isort", "ruff_format" },
                 c = { "clang-format" },
                 cpp = { "clang-format" },
-                -- sh = { "shfmt" },
+                sh = { "shfmt" },
+                markdown = { "mdformat" },
                 -- You can use 'stop_after_first' to run the first available formatter from the list
                 -- javascript = { "prettierd", "prettier", stop_after_first = true },
             },
             formatters = {
                 clang_format = {
                     prepend_args = { "--style=file" },
+                },
+                shfmt = {
+                    prepend_args = {
+                        "--indent=4",
+                        "--case-indent",
+                        "--space-redirects",
+                    },
+                },
+                mdformat = {
+                    prepend_args = { "--wrap=79", "--compact-tables" },
                 },
             },
         },

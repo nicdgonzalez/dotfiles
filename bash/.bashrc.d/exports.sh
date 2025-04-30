@@ -9,12 +9,15 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 export EDITOR='/usr/bin/nvim'
 
 get_orbit_paths() {
+    # NDG_PROJECTS is defined in `commands.sh`.
     local personal="$NDG_PROJECTS/personal"
 
     # Each client has their own subdirectory with projects inside.
     local work="$(find "$NDG_PROJECTS/work" -mindepth 1 -maxdepth 1 -type d -printf "%p:" | sed 's/:$//')"
 
-    echo "$personal:$work"
+    local minecraft="$NDG_PROJECTS/minecraft"
+
+    echo "$personal:$work:$minecraft"
 }
 export ORBIT_PATH="$(get_orbit_paths)"
 unset -f get_orbit_paths
