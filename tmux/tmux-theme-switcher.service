@@ -1,0 +1,9 @@
+[Unit]
+Description=Switch tmux between light and dark theme automatically
+
+[Service]
+ExecStart=/home/ngonzalez/.config/tmux/theme-switcher.sh
+Type=exec
+
+[Install]
+WantedBy=multi-user.target
