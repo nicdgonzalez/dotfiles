@@ -7,7 +7,7 @@ endif
 
 .PHONY: install uninstall
 
-install: $(XDG_CONFIG_HOME)/tmux
+install: $(XDG_CONFIG_HOME)/tmux $(XDG_CONFIG_HOME)/systemd/user/tmux-theme-switcher.service
 	@echo >&2 "Successfully installed tmux configuration"
 
 uninstall:
@@ -15,4 +15,13 @@ uninstall:
 	@echo >&2 "Successfully uninstalled tmux configuration"
 
 $(XDG_CONFIG_HOME)/tmux: $(this_dir)
-	mkdir --parents $(dir $@) && ln --symbolic "$<" "$@"
+	mkdir --parents $(dir $@)
+	ln --symbolic "$<" "$@"
+
+
+$(XDG_CONFIG_HOME)/systemd/user/tmux-theme-switcher.service: $(this_dir)/tmux-theme-switcher.service
+	mkdir --parents $(dir $@)
+	ln --symbolic "$<" "$@"
+	systemctl --user daemon-reload
+	systemctl --user start tmux-theme-switcher.service
+	systemctl --user enable tmux-theme-switcher.service
