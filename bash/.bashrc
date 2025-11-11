@@ -50,6 +50,8 @@ get_orbit_path() {
             -printf "%p:" |
             sed 's/:$//' # Remove the trailing colon
     )"
+
+    echo "$personal:$work"
 }
 export ORBIT_PATH="$(get_orbit_path)"
 unset -f get_orbit_path
