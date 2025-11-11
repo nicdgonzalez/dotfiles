@@ -30,3 +30,31 @@ require("lazy").setup({
         { import = "plugins" },
     },
 })
+
+vim.g.rustaceanvim = {
+    -- Plugin configuration
+    tools = {},
+    -- LSP configuration
+    server = {
+        default_settings = {
+            ["rust-analyzer"] = {
+                -- Other Settings ...
+                procMacro = {
+                    ignored = {
+                        leptos_macro = {
+                            "component",
+                            "server",
+                        },
+                    },
+                },
+                settings = {
+                    ["rust-analyzer"] = {
+                        cargo = {
+                            features = "all", -- Enable all features
+                        },
+                    },
+                },
+            },
+        },
+    },
+}
