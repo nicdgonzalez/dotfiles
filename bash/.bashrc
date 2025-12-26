@@ -21,10 +21,10 @@ if [ -r "$HOME/.bashrc.d" ]; then
 fi
 
 # Rust
-[ -r "$HOME/.cargo" ] && source "$HOME/.cargo/env"
+[ -e "$HOME/.cargo" ] && source "$HOME/.cargo/env"
 
 # Go
-[ -r "$HOME/go" ] && export PATH="$HOME/go/bin:$PATH"
+[ -e "$HOME/go" ] && export PATH="$PATH:$HOME/go/bin"
 
 # pnpm (JavaScript)
 export PNPM_HOME="/home/ngonzalez/.local/share/pnpm"
@@ -56,9 +56,10 @@ get_orbit_path() {
 export ORBIT_PATH="$(get_orbit_path)"
 unset -f get_orbit_path
 
-eval "$(starship init bash)"
-
 export EDITOR="$(command -v nvim)"
+export JAVA_HOME=/usr/lib/jvm/java-21
 
 alias ntree='tree --dirsfirst --noreport -n --gitignore'
 alias venv='source .venv/bin/activate'
+
+eval "$(starship init bash)"
