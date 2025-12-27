@@ -1,3 +1,16 @@
+--[[
+return {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
+        vim.cmd.colorscheme("tokyonight-night")
+    end,
+}
+--]]
+
+---[[
 return {
     "catppuccin/nvim",
     -- The name to use in the command (e.g. `:colorscheme <name>`).
@@ -16,3 +29,4 @@ return {
         },
     },
 }
+--]]
