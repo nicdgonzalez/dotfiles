@@ -25,8 +25,9 @@ return {
                 return nil
             else
                 return {
-                    timeout_ms = 500,
+                    timeout_ms = 2500,
                     lsp_format = "fallback",
+                    lsp_fallback = true,
                 }
             end
         end,
@@ -41,7 +42,8 @@ return {
             javascriptreact = { "deno_fmt" },
             typescript = { "deno_fmt" },
             typescriptreact = { "deno_fmt" },
-            rust = { "leptosfmt", "rustfmt", stop_after_first = true },
+            rust = { "leptosfmt", "rustfmt" },
+            astro = { "prettier" },
         },
         formatters = {
             clang_format = {
@@ -58,7 +60,7 @@ return {
                 prepend_args = { "--wrap=79" },
             },
             leptosfmt = {
-                prepend_args = { "--rustfmt", "./**/*.rs" },
+                prepend_args = { "./**/*.rs" },
             },
         },
     },
