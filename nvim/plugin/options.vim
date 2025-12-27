@@ -73,6 +73,8 @@ set mouse=a
 " Create folds automatically wherever there are markers (i.e., `{{{` and `}}}`)
 set foldmethod=marker
 
+set conceallevel=2
+
 " }}}
 
 " Backups and Swap files {{{
