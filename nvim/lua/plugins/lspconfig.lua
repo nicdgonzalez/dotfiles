@@ -250,6 +250,12 @@ return {
             ensure_installed = ensure_installed,
         })
 
+        local caps = vim.lsp.protocol.make_client_capabilities()
+        caps.textDocument.completion.dynamicRegistration = false
+        caps.textDocument.hover.dynamicRegistration = false
+        -- disable other dynamicRegistration flags as needed
+        require("lspconfig").jdtls.setup({ capabilities = caps })
+
         require("mason-lspconfig").setup({
             ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
             automatic_installation = false,
@@ -259,8 +265,6 @@ return {
                 },
             },
             handlers = {
-                -- To stop Rustacianvim from initializing a second instance of rust-analyzer.
-                -- https://github.com/mrcjkb/rustaceanvim/discussions/174#discussioncomment-8906860
                 function(server_name)
                     local server = servers[server_name] or {}
                     -- This handles overriding only values explicitly passed
@@ -273,6 +277,13 @@ return {
                         server.capabilities or {}
                     )
                     require("lspconfig")[server_name].setup(server)
+                end,
+                denols = function()
+                    local lspconfig = require("lspconfig")
+
+                    lspconfig.denols.setup({
+                        root_dir = lspconfig.util.root_pattern("deno.json"),
+                    })
                 end,
             },
         })
