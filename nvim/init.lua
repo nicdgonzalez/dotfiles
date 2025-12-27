@@ -50,7 +50,7 @@ vim.g.rustaceanvim = {
                 settings = {
                     ["rust-analyzer"] = {
                         cargo = {
-                            features = "all", -- Enable all features
+                            features = "all",
                         },
                     },
                 },
